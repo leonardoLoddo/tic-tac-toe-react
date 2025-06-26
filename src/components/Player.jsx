@@ -1,5 +1,5 @@
 import { useState } from "react";
-export default function Player({ initialName, symbol }) {
+export default function Player({ initialName, symbol, isActive }) {
   const [isEditing, setIsEditing] = useState(false);
   const [playerName, setPlayerName] = useState(initialName);
   function handleClick() {
@@ -21,7 +21,8 @@ export default function Player({ initialName, symbol }) {
     );
   }
   return (
-    <li>
+    <li className={isActive ? "active" : ""}>
+      {/* se il giocatore é attivo mostro il contorno nel suo nome */}
       <span className="player">
         {editablePlayerName}
         <span className="player-symbol">{symbol}</span>
