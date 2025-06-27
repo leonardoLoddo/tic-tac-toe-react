@@ -1,22 +1,6 @@
 // import { useState } from "react";
 
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-//questo array rappresenta la tabella da gioco
-
-export default function GameBoard({ onSelectSquare, turns }) {
-  let gameBoard = initialGameBoard;
-
-  for (const turn of turns) {
-    const { square, player } = turn; //da ciascun turno creo due costanti tramite destructuring: 'square' conterrá le coordinate della cella e 'player' il simbolo di chi la ha cliccata
-    const { row, col } = square; //con il destructuring, creo due costanti dove salvo la riga e la colonna di ogni cella
-
-    gameBoard[row][col] = player; //richiamo le costanti appena valorizzate per inserire nella giusta cella della tabella il giusto simbolo
-  }
-
+export default function GameBoard({ onSelectSquare, board }) {
   //   const [gameBoard, setGameBoard] = useState(initialGameBoard);
   //   function handleSelectSquare(rowIndex, colIndex) {
   //     //se lo state contine un oggetto o array (mutabili) é fortemente consigliata laggiornamento in modo immutabile
@@ -38,13 +22,17 @@ export default function GameBoard({ onSelectSquare, turns }) {
 
   return (
     <ol id="game-board">
-      {gameBoard.map((row, rowIndex) => (
+      {board.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
             {row.map((playerSymbol, colIndex) => (
               <li key={colIndex}>
-                <button onClick={() => onSelectSquare(rowIndex, colIndex)}>
+                <button
+                  onClick={() => onSelectSquare(rowIndex, colIndex)}
+                  disabled={playerSymbol !== null}
+                >
                   {/* passo una funzione anonima che faccia partire onSelectSquare con i giusti parametri */}
+                  {/* se il bottone é stato premuto, nell'array la sua cella avrá valore differente da null, basandomi su questo disabilito dinamicamente il bottone */}
                   {playerSymbol}
                 </button>
               </li>
