@@ -1,25 +1,4 @@
-// import { useState } from "react";
-
 export default function GameBoard({ onSelectSquare, board }) {
-  //   const [gameBoard, setGameBoard] = useState(initialGameBoard);
-  //   function handleSelectSquare(rowIndex, colIndex) {
-  //     //se lo state contine un oggetto o array (mutabili) é fortemente consigliata laggiornamento in modo immutabile
-  //     setGameBoard((prevGameBoard) => {
-  //       const updatedBoard = [
-  //         ...prevGameBoard.map((innerArray) => [...innerArray]),
-  //       ];
-  //       // con lo spread operator vado a passare gli array interni come valori e non per riferimento
-  //       // faccio la stessa cosa per ogni array annidato utilizzando il metodo map sull'array padre
-  //       updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
-  //       //eseguo la modifica alla copia dell'array andando a modificare la cella cliccata
-  //       return updatedBoard;
-  //       //restituisco a setGameBoard l'array agggiornato
-  //     });
-
-  //     onSelectSquare();
-  //     //ogni volta che un giocatore fa la sua mossa cambio il giocatore attivo
-  //   }
-
   return (
     <ol id="game-board">
       {board.map((row, rowIndex) => (
