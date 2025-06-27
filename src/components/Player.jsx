@@ -1,5 +1,10 @@
 import { useState } from "react";
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({
+  initialName,
+  symbol,
+  isActive,
+  onNameChange,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [playerName, setPlayerName] = useState(initialName);
   function handleClick() {
@@ -7,6 +12,10 @@ export default function Player({ initialName, symbol, isActive }) {
     //in react quando si aggiorna uno stato basandosi sul suo valore precedente é fortemente raccomandato passare una funzione per garantire l'ultimo valore di state
     //la funzione riceverá in un automatico l'ultimo valore dello state come parametro
     //tutto questo é necessario pereché react non aggiorna immediatamente lo state ma lo fa appena ha tempo
+    if (isEditing) {
+      onNameChange(symbol, playerName);
+    }
+    //funzione per aggiornare il nome anche nello state presente in App
   }
   function handleChange(event) {
     //automaticamente react mi passa l'evento allo scattare dello stesso come parametro della funzione
